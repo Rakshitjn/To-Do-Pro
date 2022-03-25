@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>www.ToDoList.xyz</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <style>
+    a {
+      color: #000000;
+      text-decoration: none;
+    }
+  </style>
+  <body>
+    <h2>Add a new task</h2>
+    <form action="add/" method="post">{% csrf_token %}
+      Title <input type="text" name="title" maxlength="25"><br>
+      description <input type="text" name="desc" maxlength="25"><br>
+      <input type="submit" value="Add">
+    </form>
+    <h1 align="center">-------------------Not Done-------------------</h1>
+    {% for items in data0 %}
+    <ul>
+      <li>
+        <a href="/notdone/{{items.id}}"><h3>{{items.title}}---Click Me</h3></a>
+      </li>
+    </ul>
+    {% endfor %}
+
+    <h1 align="center">-------------------Done-------------------</h1>
+    {% for items in data %}
+    <ul>
+      <li>
+        <a href="/done/{{items.id}}"
+          ><strike><h3>{{items.title}}</strike>---Click Me</h3></a>
+      </li>
+    </ul>
+    {% endfor %}
+  </body>
+</html>
